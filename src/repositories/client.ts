@@ -1,4 +1,10 @@
-export default class ClientRepo {}
+import { AbstractRepository } from "./abstractRepo";
+
+export default class ClientRepo extends AbstractRepository {
+  constructor() {
+    super("clients");
+  }
+}
 
 export interface ClientModel {
   id: number;

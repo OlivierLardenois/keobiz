@@ -1,4 +1,10 @@
-export default class BalanceSheetRepo {}
+import { AbstractRepository } from "./abstractRepo";
+
+export default class BalanceSheetRepo extends AbstractRepository {
+  constructor() {
+    super("balance_sheets");
+  }
+}
 
 export interface BalanceSheetModel {
   year: number;
