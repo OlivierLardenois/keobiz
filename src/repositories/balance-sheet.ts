@@ -8,6 +8,10 @@ export default class BalanceSheetRepo extends AbstractRepository {
   getSheetsByClientId(clientId: number) {
     return this.queryBuilder().where("client_id", clientId);
   }
+
+  deleteSheetsByClientId(clientId: number) {
+    return this.queryBuilder().where("client_id", clientId).del();
+  }
 }
 
 export interface BalanceSheetModel {

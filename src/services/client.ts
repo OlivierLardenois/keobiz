@@ -1,10 +1,14 @@
 import { container, injectable } from "tsyringe";
 
+import BalanceSheetRepo from "../repositories/balance-sheet";
 import ClientRepo, { ClientModel } from "../repositories/client";
 
 @injectable()
 class ClientService {
-  constructor(private clientRepo: ClientRepo) {}
+  constructor(
+    private clientRepo: ClientRepo,
+    private balanceSheetRepo: BalanceSheetRepo,
+  ) {}
 
   /** Get a client by its id */
   getClientById(id: number) {
@@ -19,7 +23,8 @@ class ClientService {
     return this.clientRepo.update(client);
   }
 
-  deleteClient(id: number) {
+  async deleteClient(id: number) {
+    await this.balanceSheetRepo.deleteSheetsByClientId(id);
     return this.clientRepo.deleteById(id);
   }
 }
