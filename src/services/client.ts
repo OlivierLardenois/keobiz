@@ -14,6 +14,10 @@ class ClientService {
   createClient(client: Omit<ClientModel, "id">) {
     return this.clientRepo.create(client);
   }
+
+  updateClient(client: Partial<Omit<ClientModel, "id">>) {
+    return this.clientRepo.update(client);
+  }
 }
 
 container.register<ClientService>(ClientService, { useClass: ClientService });

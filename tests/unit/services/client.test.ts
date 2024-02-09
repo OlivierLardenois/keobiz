@@ -49,3 +49,20 @@ describe("ClientService.createClient", () => {
     expect(mockedCreate).toHaveBeenCalledWith(client);
   });
 });
+
+describe("ClientService.updateClenit", () => {
+  const client: Partial<Omit<ClientModel, "id">> = {
+    first_name: "Olivier",
+    last_name: "PasLardenois",
+  };
+  const mockedUpdate = jest.fn().mockReturnValueOnce(client);
+  const clientService = new ClientService({
+    update: mockedUpdate,
+  } as any);
+
+  test("should update a client", () => {
+    const updatedClient = clientService.updateClient(client);
+    expect(updatedClient).toEqual(client);
+    expect(mockedUpdate).toHaveBeenCalledWith(client);
+  });
+});
