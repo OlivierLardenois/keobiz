@@ -50,7 +50,7 @@ describe("ClientService.createClient", () => {
   });
 });
 
-describe("ClientService.updateClenit", () => {
+describe("ClientService.updateClient", () => {
   const client: Partial<Omit<ClientModel, "id">> = {
     first_name: "Olivier",
     last_name: "PasLardenois",
@@ -64,5 +64,19 @@ describe("ClientService.updateClenit", () => {
     const updatedClient = clientService.updateClient(client);
     expect(updatedClient).toEqual(client);
     expect(mockedUpdate).toHaveBeenCalledWith(client);
+  });
+});
+
+describe("ClientService.deleteClient", () => {
+  const clientId = 1;
+
+  const mockedDeleteById = jest.fn().mockReturnValueOnce(true);
+  const clientService = new ClientService({
+    deleteById: mockedDeleteById,
+  } as any);
+
+  test("should delete a client", () => {
+    clientService.deleteClient(clientId);
+    expect(mockedDeleteById).toHaveBeenCalledWith(clientId);
   });
 });
