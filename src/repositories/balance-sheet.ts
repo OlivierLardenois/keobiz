@@ -4,6 +4,10 @@ export default class BalanceSheetRepo extends AbstractRepository {
   constructor() {
     super("balance_sheets");
   }
+
+  getSheetsByClientId(clientId: number) {
+    return this.queryBuilder().where("client_id", clientId);
+  }
 }
 
 export interface BalanceSheetModel {
