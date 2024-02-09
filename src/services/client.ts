@@ -15,7 +15,7 @@ class ClientService {
     return this.clientRepo.create(client);
   }
 
-  updateClient(client: Partial<Omit<ClientModel, "id">>) {
+  updateClient(client: Partial<ClientModel>) {
     return this.clientRepo.update(client);
   }
 

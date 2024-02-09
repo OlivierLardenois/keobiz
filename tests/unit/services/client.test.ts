@@ -51,7 +51,8 @@ describe("ClientService.createClient", () => {
 });
 
 describe("ClientService.updateClient", () => {
-  const client: Partial<Omit<ClientModel, "id">> = {
+  const client: Partial<ClientModel> = {
+    id: 1,
     first_name: "Olivier",
     last_name: "PasLardenois",
   };

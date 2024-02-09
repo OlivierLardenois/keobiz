@@ -14,8 +14,11 @@ export default class ClientRepo extends AbstractRepository {
     return this.queryBuilder().insert(client, "*");
   }
 
-  update(client: Partial<Omit<ClientModel, "id">>) {
-    return this.queryBuilder().returning("*").update(client);
+  update(client: Partial<ClientModel>) {
+    return this.queryBuilder()
+      .returning("*")
+      .where("id", client.id)
+      .update(client);
   }
 
   deleteById(id: number) {
