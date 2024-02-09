@@ -9,6 +9,10 @@ export default class ClientRepo extends AbstractRepository {
   getClientById(id: number) {
     return this.queryBuilder().where("id", id).first();
   }
+
+  create(client: Omit<ClientModel, "id">) {
+    return this.queryBuilder().insert(client, "*");
+  }
 }
 
 export interface ClientModel {

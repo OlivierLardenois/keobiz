@@ -1,6 +1,6 @@
 import { container, injectable } from "tsyringe";
 
-import ClientRepo from "../repositories/client";
+import ClientRepo, { ClientModel } from "../repositories/client";
 
 @injectable()
 class ClientService {
@@ -9,6 +9,10 @@ class ClientService {
   /** Get a client by its id */
   getClientById(id: number) {
     return this.clientRepo.getClientById(id);
+  }
+
+  createClient(client: Omit<ClientModel, "id">) {
+    return this.clientRepo.create(client);
   }
 }
 
